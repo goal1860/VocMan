@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import java.util.ArrayList?>
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DEF2F1;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.CardController">
+    <children>
+        <BorderPane prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <AnchorPane prefHeight="440.0" prefWidth="755.0" BorderPane.alignment="CENTER">
+                    <children>
+
+                        <TextField fx:id="tf_answer" layoutX="152.0" layoutY="383.0" prefHeight="27.0" prefWidth="489.0" onAction="#onEnter"/>
+                        <Button fx:id="btn_check_answer" layoutX="650.0" layoutY="383.0"  mnemonicParsing="false" onMouseClicked="#handleCheckAnswer" prefHeight="27.0" prefWidth="100.0"
+                                style="-fx-background-color: #3aafa9;" text="Check" textFill="WHITE"/>
+                        <Label layoutX="14.0" layoutY="25.0" text="Words:"/>
+                        <Label fx:id="lbl_numb_cards" layoutX="83.0" layoutY="25.0" text="NoCards"/>
+                        <Label layoutX="14.0" layoutY="50.0" text="Studied:"/>
+                        <Label fx:id="lbl_numb_answered" layoutX="83.0" layoutY="50.0" text="NoCards"/>
+                        <Label layoutX="14.0" layoutY="75.0" text="Remaining:"/>
+                        <Label fx:id="lbl_numb_remaining" layoutX="83.0" layoutY="75.0" text="NoCards"/>
+                        <Label layoutX="14.0" layoutY="100.0" text="Passed:"/>
+                        <Label fx:id="lbl_numb_pass" layoutX="83.0" layoutY="100.0" text="NoCards"/>
+                        <Label layoutX="14.0" layoutY="125.0" text="Failed:"/>
+                        <Label fx:id="lbl_numb_fail" layoutX="83.0" layoutY="125.0" text="NoCards"/>
+                        <Label layoutX="790.0" layoutY="26.0" text="Card score:"/>
+                        <Circle fx:id="circle1" fill="#ffffff" layoutX="790.0" layoutY="59.0" radius="9.0" stroke="#69115e" strokeType="INSIDE"/>
+                        <Circle fx:id="circle2" fill="#ffffff" layoutX="808.0" layoutY="59.0" radius="9.0" stroke="#69115e" strokeType="INSIDE"/>
+                        <Circle fx:id="circle3" fill="#ffffff" layoutX="826.0" layoutY="59.0" radius="9.0" stroke="#69115e" strokeType="INSIDE"/>
+                        <Circle fx:id="circle4" fill="#ffffff" layoutX="844.0" layoutY="59.0" radius="9.0" stroke="#69115e" strokeType="INSIDE"/>
+                        <Circle fx:id="circle5" fill="#ffffff" layoutX="862.0" layoutY="59.0" radius="9.0" stroke="#69115e" strokeType="INSIDE"/>
+                        <fx:define>
+                            <ArrayList fx:id="circleList">
+                                <fx:reference source="circle1"/>
+                                <fx:reference source="circle2"/>
+                                <fx:reference source="circle3"/>
+                                <fx:reference source="circle4"/>
+                                <fx:reference source="circle5"/>
+                            </ArrayList>
+                        </fx:define>
+                        <ImageView fx:id="star_white" fitHeight="44.0" fitWidth="46.0" layoutX="803.0" layoutY="90.0" onMouseClicked="#markStarredAction" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../img/correct.png"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="star_filled" fitHeight="44.0" fitWidth="46.0" layoutX="803.0" layoutY="90.0" onMouseClicked="#unmarkStarred" pickOnBounds="true"
+                                   preserveRatio="true" visible="false">
+                            <image>
+                                <Image url="@../img/wrong.png"/>
+                            </image>
+                        </ImageView>
+                        <Label layoutX="16.0" layoutY="345.0" prefHeight="23.0" prefWidth="97.0" text="Previous card:"/>
+                        <Label fx:id="lbl_answer" layoutX="16.0" layoutY="372.0" prefHeight="23.0" prefWidth="97.0" text="ANSWER" textFill="#69115e">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="341.0" layoutX="149.0" layoutY="26.0" stroke="#69115e" strokeType="INSIDE" width="602.0">
+                            <effect>
+                                <InnerShadow color="#69125e80" height="90.82" radius="44.91" width="90.82"/>
+                            </effect>
+                        </Rectangle>
+                        <Label fx:id="lbl_front" alignment="CENTER" layoutX="167.0" layoutY="45.0" prefHeight="302.0" prefWidth="567.0" text="Front" textAlignment="CENTER"
+                               wrapText="true">
+                            <font>
+                                <Font size="24.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="lbl_back" alignment="CENTER" layoutX="167.0" layoutY="45.0" prefHeight="302.0" prefWidth="567.0" text="Back" textAlignment="CENTER"
+                               textFill="#69125e" visible="false" wrapText="true">
+                            <font>
+                                <Font size="24.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="lbl_typo" alignment="CENTER" layoutX="328.0" layoutY="410.0" prefHeight="17.0" prefWidth="251.0" text="Answer doesn't match. Was it a typo?"
+                               textAlignment="CENTER" textFill="#000000a7" visible="false"/>
+                    </children>
+                </AnchorPane>
+            </center>
+            <top>
+                <Pane prefHeight="70.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label layoutX="300.0" layoutY="13.0" text="Learning Vocabulary" textFill="#17252a">
+                            <font>
+                                <Font name="Apple SD Gothic Neo Heavy" size="36.0"/>
+                            </font>
+                            <effect>
+                                <DropShadow color="#00000099" height="6.0" offsetX="2.0" offsetY="2.0" radius="2.5" width="6.0"/>
+                            </effect>
+                        </Label>
+                        <Button fx:id="btn_cancel" layoutX="771.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#cancelAction" prefHeight="27.0" prefWidth="100.0"
+                                style="-fx-background-color: #3aafa9;" text="Cancel" textFill="WHITE"/>
+                        <Label fx:id="lbl_deck_name" layoutX="16.0" layoutY="26.0" prefHeight="23.0" prefWidth="329.0" text="Deck name">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </top>
+            <bottom>
+                <HBox prefHeight="90.0" prefWidth="200.0" alignment="CENTER">
+                    <children>
+                        <Button fx:id="btn_correct"  mnemonicParsing="false" onMouseClicked="#handlePass" prefHeight="27.0" prefWidth="100.0"
+                                style="-fx-background-color: #3aafa9;" text="Pass" textFill="WHITE"/>
+                        <Button fx:id="btn_wrong"  mnemonicParsing="false" onMouseClicked="#handleFail" prefHeight="27.0" prefWidth="100.0"
+                                style="-fx-background-color: #3aafa9;" text="Fail" textFill="WHITE"/>
+                        <Button fx:id="btn_flip"  mnemonicParsing="false" onMouseClicked="#flipAction" prefHeight="27.0" prefWidth="100.0"
+                                style="-fx-background-color: #2B7A78;" text="Flip" textFill="WHITE"/>
+                        <Button fx:id="btn_shuffle" mnemonicParsing="false" onMouseClicked="#nextNewAction" prefHeight="27.0" prefWidth="100.0"
+                                style="-fx-background-color: #3aafa9;" text="Next New" textFill="WHITE"/>
+                        <Button fx:id="btn_next" mnemonicParsing="false" onMouseClicked="#nextAction" prefHeight="27.0" prefWidth="100.0"
+                                style="-fx-background-color: #3aafa9;" text="Next &gt;" textFill="WHITE"/>
+
+                    </children>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>
